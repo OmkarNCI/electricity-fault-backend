@@ -1,0 +1,39 @@
+simulation:
+  frequency_seconds: 1
+  duration_seconds: 180
+  default_scenario: normal
+  areas:
+    - id: AREA_1
+      poles: [P1, P2, P3, P4]
+    - id: AREA_2
+      poles: [P1, P2, P3]
+
+thresholds:
+  nominal_voltage_v: 230
+  undervoltage_v: 200
+  overload_a: 110
+  overheating_c: 70
+  tilt_warning_deg: 8
+  tilt_critical_deg: 15
+  double_pole_tilt_jump_deg: 10
+  double_pole_voltage_drop_v: 20
+  double_pole_current_spike_a: 25
+
+aws:
+  region: us-east-1
+  sqs_queue_url: "https://sqs.us-east-1.amazonaws.com/894097443552/Electricity_Sensor_Data_Queue"
+  alerts_table: Alerts
+  area_summaries_table: AreaSummaries
+  s3_bucket_name: "power-fog-edge-simulations"
+
+fog:
+  ingest_url: http://localhost:8000/ingest
+  summary_interval_seconds: 30
+  rolling_window_seconds: 60
+
+mqtt:
+  broker_host: localhost
+  broker_port: 1883
+  keepalive: 60
+  base_topic: "grid"
+  client_id_prefix: "electricity-sim"
