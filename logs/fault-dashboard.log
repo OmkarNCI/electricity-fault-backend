@@ -1,0 +1,251 @@
+2026-04-04 17:26:32,648 | INFO | main | FastAPI application startup complete
+2026-04-04 17:26:32,649 | INFO | main | Starting MQTT subscriber in background thread
+2026-04-04 17:26:32,649 | INFO | src.fog.aggregator | AreaAggregator initialized
+2026-04-04 17:26:33,019 | INFO | src.fog.aws_dispatcher | AWSDispatcher initialized | region=us-east-1 queue_url=https://sqs.us-east-1.amazonaws.com/894097443552/Electricity_Sensor_Data_Queue
+2026-04-04 17:26:33,021 | INFO | main | Starting simulator in background thread
+2026-04-04 17:26:33,022 | INFO | src.edge.simulator | Starting simulator | frequency=1.0s | duration=180s | mqtt=True
+2026-04-04 17:26:33,022 | INFO | main | Simulator started with dynamic scenario switching
+2026-04-04 17:26:33,022 | INFO | src.edge.mqtt_publisher | MQTT Publisher initialized
+2026-04-04 17:26:33,025 | INFO | src.edge.mqtt_publisher | Connecting to MQTT broker
+2026-04-04 17:26:33,025 | INFO | main | FastAPI application shutdown complete
+2026-04-04 17:26:33,313 | INFO | src.edge.mqtt_publisher | Connected to MQTT broker
+2026-04-04 17:26:33,313 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:33,314 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P1 scenario=normal
+2026-04-04 17:26:33,314 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P1
+2026-04-04 17:26:33,314 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:35,025 | INFO | main | FastAPI application startup complete
+2026-04-04 17:26:35,025 | INFO | main | Starting MQTT subscriber in background thread
+2026-04-04 17:26:35,025 | INFO | src.fog.aggregator | AreaAggregator initialized
+2026-04-04 17:26:35,025 | INFO | src.fog.aws_dispatcher | AWSDispatcher initialized | region=us-east-1 queue_url=https://sqs.us-east-1.amazonaws.com/894097443552/Electricity_Sensor_Data_Queue
+2026-04-04 17:26:35,025 | INFO | main | Starting simulator in background thread
+2026-04-04 17:26:35,037 | INFO | src.edge.simulator | Starting simulator | frequency=1.0s | duration=180s | mqtt=True
+2026-04-04 17:26:35,037 | INFO | main | Simulator started with dynamic scenario switching
+2026-04-04 17:26:35,038 | INFO | src.edge.mqtt_publisher | MQTT Publisher initialized
+2026-04-04 17:26:35,039 | INFO | src.edge.mqtt_publisher | Connecting to MQTT broker
+2026-04-04 17:26:35,143 | INFO | src.edge.mqtt_publisher | Connected to MQTT broker
+2026-04-04 17:26:35,144 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:35,145 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P1 scenario=normal
+2026-04-04 17:26:35,145 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P1
+2026-04-04 17:26:35,146 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:35,147 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:35,147 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P1
+2026-04-04 17:26:35,147 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:35,148 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P1
+2026-04-04 17:26:35,150 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:36,148 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:36,148 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P2 scenario=normal
+2026-04-04 17:26:36,148 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P2
+2026-04-04 17:26:36,148 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:36,148 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:36,148 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P2
+2026-04-04 17:26:36,148 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:36,148 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P2
+2026-04-04 17:26:36,148 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:37,150 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:37,150 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P3 scenario=normal
+2026-04-04 17:26:37,150 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P3
+2026-04-04 17:26:37,150 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:37,150 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:37,150 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P3
+2026-04-04 17:26:37,150 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:37,150 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P3
+2026-04-04 17:26:37,158 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:38,155 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:38,155 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P4 scenario=normal
+2026-04-04 17:26:38,155 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P4
+2026-04-04 17:26:38,157 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:38,158 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:38,159 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P4
+2026-04-04 17:26:38,159 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:38,160 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P4
+2026-04-04 17:26:38,161 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:39,159 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:39,159 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P1 scenario=normal
+2026-04-04 17:26:39,159 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P1
+2026-04-04 17:26:39,159 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:39,159 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:39,159 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P1
+2026-04-04 17:26:39,159 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:39,159 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P1
+2026-04-04 17:26:39,168 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:40,165 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:40,165 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P2 scenario=normal
+2026-04-04 17:26:40,165 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P2
+2026-04-04 17:26:40,165 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:40,165 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:40,165 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P2
+2026-04-04 17:26:40,165 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:40,165 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P2
+2026-04-04 17:26:40,165 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:41,168 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:41,168 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P3 scenario=normal
+2026-04-04 17:26:41,168 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P3
+2026-04-04 17:26:41,168 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:41,168 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:41,168 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P3
+2026-04-04 17:26:41,174 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:41,176 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P3
+2026-04-04 17:26:41,178 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:42,174 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:42,175 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P1 scenario=normal
+2026-04-04 17:26:42,175 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P1
+2026-04-04 17:26:42,177 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:42,177 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:42,177 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P1
+2026-04-04 17:26:42,177 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:42,177 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P1
+2026-04-04 17:26:42,181 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:43,179 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:43,179 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P2 scenario=normal
+2026-04-04 17:26:43,179 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P2
+2026-04-04 17:26:43,179 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:43,179 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:43,179 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P2
+2026-04-04 17:26:43,179 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:43,179 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P2
+2026-04-04 17:26:43,179 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:44,183 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:44,183 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P3 scenario=normal
+2026-04-04 17:26:44,183 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P3
+2026-04-04 17:26:44,183 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:44,183 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:44,183 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P3
+2026-04-04 17:26:44,183 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:44,189 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P3
+2026-04-04 17:26:44,191 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:45,188 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:45,188 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P4 scenario=normal
+2026-04-04 17:26:45,188 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P4
+2026-04-04 17:26:45,191 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:45,191 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:45,191 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P4
+2026-04-04 17:26:45,191 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:45,191 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P4
+2026-04-04 17:26:45,196 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:46,193 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:46,193 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P1 scenario=normal
+2026-04-04 17:26:46,193 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P1
+2026-04-04 17:26:46,193 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:46,193 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:46,193 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P1
+2026-04-04 17:26:46,193 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:46,193 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P1
+2026-04-04 17:26:46,201 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:47,198 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:47,198 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P2 scenario=normal
+2026-04-04 17:26:47,198 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P2
+2026-04-04 17:26:47,198 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:47,198 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:47,198 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P2
+2026-04-04 17:26:47,198 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:47,198 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P2
+2026-04-04 17:26:47,198 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:48,202 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:48,202 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P3 scenario=normal
+2026-04-04 17:26:48,202 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P3
+2026-04-04 17:26:48,202 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:48,202 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:48,202 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P3
+2026-04-04 17:26:48,202 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:48,202 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P3
+2026-04-04 17:26:48,207 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:49,205 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:49,205 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P1 scenario=normal
+2026-04-04 17:26:49,205 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P1
+2026-04-04 17:26:49,207 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:49,207 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:49,209 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P1
+2026-04-04 17:26:49,209 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:49,209 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P1
+2026-04-04 17:26:49,209 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:50,209 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:50,210 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P2 scenario=normal
+2026-04-04 17:26:50,211 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P2
+2026-04-04 17:26:50,212 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:50,213 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:50,213 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P2
+2026-04-04 17:26:50,214 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:50,215 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P2
+2026-04-04 17:26:50,216 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:51,214 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:51,214 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P3 scenario=normal
+2026-04-04 17:26:51,214 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P3
+2026-04-04 17:26:51,214 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:51,214 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:51,214 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P3
+2026-04-04 17:26:51,217 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:51,217 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P3
+2026-04-04 17:26:51,219 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:52,216 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:52,216 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P4 scenario=normal
+2026-04-04 17:26:52,217 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P4
+2026-04-04 17:26:52,217 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:52,218 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:52,218 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P4
+2026-04-04 17:26:52,218 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:52,220 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P4
+2026-04-04 17:26:52,221 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:53,219 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:53,219 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P1 scenario=normal
+2026-04-04 17:26:53,219 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P1
+2026-04-04 17:26:53,219 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:53,219 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:53,219 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P1
+2026-04-04 17:26:53,219 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:53,219 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P1
+2026-04-04 17:26:53,224 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:54,222 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:54,222 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P2 scenario=normal
+2026-04-04 17:26:54,223 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P2
+2026-04-04 17:26:54,224 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:54,225 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:54,226 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P2
+2026-04-04 17:26:54,226 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:54,228 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P2
+2026-04-04 17:26:54,229 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:55,226 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:55,227 | INFO | src.edge.simulator | Generating event | area=AREA_2 pole=P3 scenario=normal
+2026-04-04 17:26:55,228 | INFO | src.edge.simulator | MQTT publish | area=AREA_2 pole=P3
+2026-04-04 17:26:55,229 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:55,230 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:55,231 | INFO | src.fog.aggregator | Updated event | area=AREA_2 pole=P3
+2026-04-04 17:26:55,232 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:55,234 | INFO | src.fog.live_state | Live event updated | area=AREA_2 pole=P3
+2026-04-04 17:26:55,237 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:56,232 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:56,232 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P1 scenario=normal
+2026-04-04 17:26:56,232 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P1
+2026-04-04 17:26:56,232 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:56,232 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:56,232 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P1
+2026-04-04 17:26:56,232 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:56,232 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P1
+2026-04-04 17:26:56,232 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:57,235 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:57,236 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P2 scenario=normal
+2026-04-04 17:26:57,236 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P2
+2026-04-04 17:26:57,238 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:57,239 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:57,240 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P2
+2026-04-04 17:26:57,240 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:57,242 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P2
+2026-04-04 17:26:57,243 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:58,240 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:58,241 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P3 scenario=normal
+2026-04-04 17:26:58,242 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P3
+2026-04-04 17:26:58,243 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:58,244 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:58,245 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P3
+2026-04-04 17:26:58,246 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:58,247 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P3
+2026-04-04 17:26:58,249 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:59,246 | INFO | src.edge.simulation_state | Getting current scenario
+2026-04-04 17:26:59,246 | INFO | src.edge.simulator | Generating event | area=AREA_1 pole=P4 scenario=normal
+2026-04-04 17:26:59,246 | INFO | src.edge.simulator | MQTT publish | area=AREA_1 pole=P4
+2026-04-04 17:26:59,246 | INFO | src.edge.mqtt_publisher | Published event
+2026-04-04 17:26:59,246 | INFO | src.fog.detection | Detection completed with no alerts
+2026-04-04 17:26:59,246 | INFO | src.fog.aggregator | Updated event | area=AREA_1 pole=P4
+2026-04-04 17:26:59,246 | INFO | src.fog.aggregator | Updated alerts | area=unknown alert_count=0
+2026-04-04 17:26:59,253 | INFO | src.fog.live_state | Live event updated | area=AREA_1 pole=P4
+2026-04-04 17:26:59,255 | INFO | src.fog.aggregator | Cleared all area alerts
+2026-04-04 17:26:59,789 | INFO | main | FastAPI application shutdown complete

@@ -7,8 +7,8 @@ from datetime import datetime
 
 import paho.mqtt.client as mqtt
 
-from Backend.src.common.config import CONFIG
-from Backend.src.common.models import SensorEvent
+from src.common.config import CONFIG
+from src.common.models import SensorEvent
 
 logger = logging.getLogger(__name__)
 

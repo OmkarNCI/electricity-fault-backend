@@ -5,11 +5,11 @@ import time
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from Backend.src.core.logging_config import setup_logging
-from Backend.src.dashboard.api import router as dashboard_router
-from Backend.src.edge.simulator import run_simulator
-from Backend.src.fog.mqtt_subscriber import MQTTSubscriber
-from Backend.src.fog.websocket import websocket_endpoint
+from src.core.logging_config import setup_logging
+from src.dashboard.api import router as dashboard_router
+from src.edge.simulator import run_simulator
+from src.fog.mqtt_subscriber import MQTTSubscriber
+from src.fog.websocket import websocket_endpoint
 
 setup_logging()
 logger = logging.getLogger(__name__)

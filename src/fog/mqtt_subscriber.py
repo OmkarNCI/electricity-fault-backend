@@ -7,13 +7,13 @@ from typing import Any
 
 import paho.mqtt.client as mqtt
 
-from Backend.src.common.config import CONFIG
-from Backend.src.common.models import SensorEvent
-from Backend.src.fog.detection import detect_event
-from Backend.src.fog.aggregator import AreaAggregator
-from Backend.src.fog.aws_dispatcher import AWSDispatcher
-from Backend.src.fog.connection_manager import manager
-from Backend.src.fog.live_state import live_fog_state
+from src.common.config import CONFIG
+from src.common.models import SensorEvent
+from src.fog.detection import detect_event
+from src.fog.aggregator import AreaAggregator
+from src.fog.aws_dispatcher import AWSDispatcher
+from src.fog.connection_manager import manager
+from src.fog.live_state import live_fog_state
 
 
 class MQTTSubscriber:

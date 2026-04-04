@@ -9,10 +9,10 @@ from dataclasses import asdict
 from datetime import UTC, datetime
 from typing import Iterator
 
-from Backend.src.common.config import CONFIG
-from Backend.src.common.models import SensorEvent
-from Backend.src.edge.mqtt_publisher import MQTTPublisher
-from Backend.src.edge.simulation_state import current_scenario
+from src.common.config import CONFIG
+from src.common.models import SensorEvent
+from src.edge.mqtt_publisher import MQTTPublisher
+from src.edge.simulation_state import current_scenario
 
 logger = logging.getLogger(__name__)
 

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import logging
 
-from Backend.src.common.config import CONFIG
-from Backend.src.common.models import DetectionResult, SensorEvent
+from src.common.config import CONFIG
+from src.common.models import DetectionResult, SensorEvent
 
 logger = logging.getLogger(__name__)
 

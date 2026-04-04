@@ -3,8 +3,8 @@ from __future__ import annotations
 import logging
 from datetime import UTC, datetime
 
-from Backend.src.common.config import CONFIG
-from Backend.src.common.models import AreaSummary, DetectionResult, SensorEvent
+from src.common.config import CONFIG
+from src.common.models import AreaSummary, DetectionResult, SensorEvent
 
 logger = logging.getLogger(__name__)
 

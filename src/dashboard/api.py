@@ -11,9 +11,9 @@ import boto3
 from botocore.exceptions import BotoCoreError, ClientError
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from Backend.src.fog.live_state import live_fog_state
-from Backend.src.common.config import CONFIG
-from Backend.src.edge.simulation_state import current_scenario
+from src.fog.live_state import live_fog_state
+from src.common.config import CONFIG
+from src.edge.simulation_state import current_scenario
 
 
 CURRENT_FILE = Path(__file__).resolve()

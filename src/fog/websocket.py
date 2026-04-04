@@ -1,5 +1,5 @@
 from fastapi import WebSocket
-from Backend.src.fog.connection_manager import manager
+from src.fog.connection_manager import manager
 
 
 async def websocket_endpoint(websocket: WebSocket):

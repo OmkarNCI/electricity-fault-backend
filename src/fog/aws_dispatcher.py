@@ -9,8 +9,8 @@ from typing import Any
 
 import boto3
 
-from Backend.src.common.config import CONFIG
-from Backend.src.common.models import AreaSummary, DetectionResult
+from src.common.config import CONFIG
+from src.common.models import AreaSummary, DetectionResult
 
 logger = logging.getLogger(__name__)
 

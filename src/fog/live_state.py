@@ -6,7 +6,7 @@ from dataclasses import asdict
 from datetime import datetime, UTC
 from typing import Any
 
-from Backend.src.common.models import SensorEvent
+from src.common.models import SensorEvent
 
 logger = logging.getLogger(__name__)
 

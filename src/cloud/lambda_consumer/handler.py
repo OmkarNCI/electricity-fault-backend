@@ -7,7 +7,7 @@ from typing import Any
 
 import boto3
 
-from Backend.src.cloud.lambda_consumer.config import AWS_REGION, ALERTS_TABLE, AREA_SUMMARIES_TABLE
+from src.cloud.lambda_consumer.config import AWS_REGION, ALERTS_TABLE, AREA_SUMMARIES_TABLE
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
