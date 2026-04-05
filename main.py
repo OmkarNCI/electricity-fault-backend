@@ -19,7 +19,7 @@ app = FastAPI(title="Unified Backend")
 # CORS for React
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173, https://main.d24uw1llup1b1k.amplifyapp.com/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
