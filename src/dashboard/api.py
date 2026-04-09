@@ -13,6 +13,7 @@ from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from src.fog.live_state import live_fog_state
 from src.common.config import CONFIG
+from src.common.models import SensorEvent
 from src.edge.simulation_state import current_scenario
 
 
@@ -244,7 +245,11 @@ def get_live_areas():
     try:
         areas = live_fog_state.get_available_areas()
         logger.info("Live areas returned | area_count=%s", len(areas))
-        return areas
+        return {
+            "areas": areas,
+            "count": len(areas),
+            "data_available": len(areas) > 0,
+        }
 
     except Exception:
         logger.exception("Failed to fetch live areas")
@@ -258,20 +263,18 @@ def get_area_details(area_id: str):
     try:
         poles = []
         latest_events = {}
+        area_id_upper = area_id.upper()
 
         for pole_id, event in live_fog_state.latest_event_by_pole.items():
-            if event.area_id == area_id:
+            if event.area_id.upper() == area_id_upper:
                 poles.append(pole_id)
                 latest_events[pole_id] = live_fog_state._event_to_dict(event)
-
-        if not poles:
-            logger.warning("No live poles found for area | area_id=%s", area_id)
-            raise HTTPException(status_code=404, detail="No poles found")
 
         result = {
             "area_id": area_id,
             "poles": sorted(poles),
             "latest_pole_events": latest_events,
+            "data_available": len(poles) > 0,
         }
 
         logger.info(
@@ -281,8 +284,6 @@ def get_area_details(area_id: str):
         )
         return result
 
-    except HTTPException:
-        raise
     except Exception:
         logger.exception("Failed to fetch live area details | area_id=%s", area_id)
         raise HTTPException(status_code=500, detail="Failed to fetch live area details")
@@ -300,7 +301,11 @@ def get_pole_history(pole_id: str):
             pole_id,
             len(history) if history else 0,
         )
-        return history
+        return {
+            "pole_id": pole_id,
+            "history": history,
+            "count": len(history) if history else 0,
+        }
 
     except Exception:
         logger.exception("Failed to fetch pole history | pole_id=%s", pole_id)
@@ -488,3 +493,51 @@ async def upload_log_file(file: UploadFile = File(...)):
 def health() -> dict[str, str]:
     logger.info("Route called | GET /health")
     return {"status": "ok"}
+
+
+@router.post("/test/inject-event")
+def inject_test_event(area_id: str = "AREA_2", pole_id: str = "P1") -> dict[str, Any]:
+    """
+    Test endpoint to inject sample data directly into live_fog_state.
+    This bypasses MQTT and allows testing live routes without simulator.
+    """
+    from datetime import datetime, UTC
+    
+    logger.info("Test endpoint called | POST /test/inject-event | area=%s pole=%s", area_id, pole_id)
+    
+    try:
+        # Create a sample sensor event
+        test_event = SensorEvent(
+            area_id=area_id,
+            pole_id=pole_id,
+            timestamp=datetime.now(UTC),
+            voltage_v=230.5,
+            current_a=95.2,
+            tilt_deg=5.5,
+            temperature_c=60.3,
+            line_fault_indicator=0,
+            smart_meter_kw=45.2,
+            power_status=1,
+        )
+        
+        # Inject into live state
+        live_fog_state.update_event(test_event)
+        
+        logger.info("Test event injected | area=%s pole=%s", area_id, pole_id)
+        
+        return {
+            "status": "success",
+            "message": f"Test event injected for {area_id}/{pole_id}",
+            "event": {
+                "area_id": area_id,
+                "pole_id": pole_id,
+                "voltage_v": 230.5,
+                "current_a": 95.2,
+                "tilt_deg": 5.5,
+                "temperature_c": 60.3,
+            }
+        }
+    
+    except Exception:
+        logger.exception("Failed to inject test event")
+        raise HTTPException(status_code=500, detail="Failed to inject test event")

@@ -110,16 +110,6 @@ def event_stream() -> Iterator[SensorEvent]:
                 yield generate_event(area_id, pole_id)
 
 
-def timed_event_stream(duration_seconds: int = DURATION_SECONDS) -> Iterator[SensorEvent]:
-    end_time = time.time() + duration_seconds
-    while time.time() < end_time:
-        for area_id, poles in AREAS.items():
-            for pole_id in poles:
-                if time.time() >= end_time:
-                    break
-                yield generate_event(area_id, pole_id)
-
-
 def event_to_dict(event: SensorEvent) -> dict:
     data = asdict(event)
     data["timestamp"] = event.timestamp.isoformat()
@@ -144,7 +134,7 @@ def run_simulator(
         publisher.connect()
     
     try:
-        for event in timed_event_stream(duration_seconds=duration_seconds):
+        for event in event_stream():
             if use_mqtt and publisher:
                 logger.info("MQTT publish | area=%s pole=%s", event.area_id, event.pole_id)
                 publisher.publish_event(event)

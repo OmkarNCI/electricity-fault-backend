@@ -1,6 +1,6 @@
 simulation:
   frequency_seconds: 1
-  duration_seconds: 180
+  duration_seconds: 300
   default_scenario: normal
   areas:
     - id: AREA_1
@@ -25,6 +25,8 @@ aws:
   alerts_table: Alerts
   area_summaries_table: AreaSummaries
   s3_bucket_name: "power-fog-edge-simulations"
+  # SNS Topic for email alerts (configure with your AWS SNS topic ARN)
+  sns_topic_arn: "arn:aws:sns:us-east-1:894097443552:electricity-area-pole-alerts"
 
 fog:
   ingest_url: http://localhost:8000/ingest

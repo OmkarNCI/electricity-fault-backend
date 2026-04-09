@@ -1,0 +1,11 @@
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.git
+.github
+.elasticbeanstalk
+logs
+.env
+.ebextensions

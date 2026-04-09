@@ -1,36 +1,39 @@
-# src/core/logging_config.py
 import logging
 import os
-from logging.handlers import RotatingFileHandler
 
-LOG_DIR = "logs"
-LOG_FILE = os.path.join(LOG_DIR, "fault-dashboard.log")
+LOG_DIR = "/tmp"
+LOG_FILE = os.path.join(LOG_DIR, "app.log")
+
 
 def setup_logging():
     os.makedirs(LOG_DIR, exist_ok=True)
 
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
-
-    if logger.handlers:
-        return
-
+    log_level = os.getenv("LOG_LEVEL", "INFO").upper()
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
     )
 
-    file_handler = RotatingFileHandler(
-        LOG_FILE,
-        maxBytes=5 * 1024 * 1024,
-        backupCount=5,
-        encoding="utf-8",
-    )
-    file_handler.setLevel(logging.INFO)
+    root_logger = logging.getLogger()
+    root_logger.setLevel(log_level)
+
+    if root_logger.handlers:
+        root_logger.handlers.clear()
+
+    file_handler = logging.FileHandler(LOG_FILE, mode="a", encoding="utf-8")
     file_handler.setFormatter(formatter)
 
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(formatter)
 
-    logger.addHandler(file_handler)
-    logger.addHandler(console_handler)
+    root_logger.addHandler(file_handler)
+    root_logger.addHandler(console_handler)
+
+
+def get_log_file_path() -> str:
+    return LOG_FILE
+
+
+def clear_log_file():
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "w", encoding="utf-8"):
+            pass

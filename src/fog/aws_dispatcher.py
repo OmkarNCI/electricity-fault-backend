@@ -11,6 +11,7 @@ import boto3
 
 from src.common.config import CONFIG
 from src.common.models import AreaSummary, DetectionResult
+from src.fog.sns_notifier import get_sns_notifier
 
 logger = logging.getLogger(__name__)
 
@@ -66,15 +67,29 @@ class AWSDispatcher:
 
     def send_alert(self, alert: DetectionResult) -> dict[str, Any]:
         """
-        Send a DetectionResult to SQS as an ALERT message.
+        Send a DetectionResult to SQS as an ALERT message and notify via SNS email.
         """
         logger.info("Sending ALERT | area=%s pole=%s alert_type=%s", alert.area_id, alert.pole_id, alert.alert_type)
+        
+        # Send to SQS for storage
         payload = {
             "type": "ALERT",
             "data": self._serialize_dataclass(alert),
         }
         response = self._send_message(payload)
-        logger.info("ALERT sent successfully | message_id=%s", response.get("MessageId"))
+        logger.info("ALERT sent to SQS successfully | message_id=%s", response.get("MessageId"))
+        
+        # Send email notification via SNS
+        notifier = get_sns_notifier()
+        sns_response = notifier.send_alert_notification(alert)
+        if sns_response:
+            logger.info(
+                "ALERT notification sent via SNS | sns_message_id=%s area=%s pole=%s",
+                sns_response.get("MessageId"),
+                alert.area_id,
+                alert.pole_id,
+            )
+        
         return response
 
     def send_area_summary(self, summary: AreaSummary) -> dict[str, Any]:

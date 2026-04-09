@@ -43,8 +43,9 @@ Messages should appear in AWS SQS
 Lambda should process the messages
 Data should be stored in DynamoDB
 
-Purpose of This Project: 
+Purpose of This Project:
 This project demonstrates how:
+
 1. Edge devices generate data
 2. Fog layer processes data locally
 3. Only important data is sent to the cloud
