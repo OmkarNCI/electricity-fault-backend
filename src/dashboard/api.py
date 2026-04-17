@@ -44,9 +44,9 @@ logger.info(
     S3_BUCKET_NAME,
 )
 
-# -------------------------------
-# Helpers
-# -------------------------------
+# ============================================================
+# Helper Functions & Utilities
+# ============================================================
 
 def convert_decimal(value: Any) -> Any:
     if isinstance(value, list):
@@ -59,6 +59,7 @@ def convert_decimal(value: Any) -> Any:
 
 
 def scan_table(table) -> list[dict[str, Any]]:
+    """Scan entire DynamoDB table and return all items with pagination support."""
     table_name = getattr(table, "name", "unknown")
     logger.info("DynamoDB scan started | table=%s", table_name)
 
@@ -67,6 +68,7 @@ def scan_table(table) -> list[dict[str, Any]]:
         items = response.get("Items", [])
 
         while "LastEvaluatedKey" in response:
+            # Continue pagination if there are more items to fetch
             logger.info("DynamoDB pagination continued | table=%s", table_name)
             response = table.scan(ExclusiveStartKey=response["LastEvaluatedKey"])
             items.extend(response.get("Items", []))
@@ -91,6 +93,7 @@ def sort_by_timestamp_desc(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def get_all_areas() -> list[str]:
+    """Collect all unique area IDs from summaries and alerts tables."""
     logger.info("Collecting all unique area IDs")
 
     try:
@@ -117,9 +120,9 @@ def get_all_areas() -> list[str]:
         raise
 
 
-# -------------------------------
-# Historic data routes
-# -------------------------------
+# ============================================================
+# Historical Data API Routes
+# ============================================================
 
 @router.get("/areas")
 def get_areas() -> list[str]:
@@ -235,9 +238,9 @@ def get_pole_alerts(pole_id: str, limit: int = 20) -> list[dict[str, Any]]:
         raise HTTPException(status_code=500, detail="Failed to fetch pole alerts")
 
 
-# -------------------------------
-# Live dashboard routes
-# -------------------------------
+# ============================================================
+# Live Dashboard API Routes
+# ============================================================
 
 @router.get("/live/areas")
 def get_live_areas():
@@ -327,9 +330,9 @@ def get_live_status():
         raise HTTPException(status_code=500, detail="Failed to fetch live status")
 
 
-# -------------------------------
-# Simulation control routes
-# -------------------------------
+# ============================================================
+# Simulation Control API Routes
+# ============================================================
 
 @router.get("/simulation/status")
 def get_simulation_status():
@@ -379,9 +382,9 @@ def change_scenario(scenario: str):
         raise HTTPException(status_code=500, detail="Failed to change scenario")
 
 
-# --------------------------------
-# Log upload route
-# --------------------------------
+# ============================================================
+# Log File Upload & S3 Storage
+# ============================================================
 
 @router.post("/upload-log")
 async def upload_log_file(file: UploadFile = File(...)):

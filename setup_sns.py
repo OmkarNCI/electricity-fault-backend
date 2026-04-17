@@ -1,20 +1,4 @@
-#!/usr/bin/env python3
-"""
-AWS SNS Configuration Helper Script
-
-This script helps set up AWS SNS topic and email subscriptions for electricity grid alerts.
-Run this script first, then copy the SNS Topic ARN to settings.yaml.
-
-Prerequisites:
-- AWS CLI configured with credentials (aws configure)
-- boto3 installed (pip install boto3)
-- Permissions: sns:CreateTopic, sns:Subscribe
-
-Usage:
-    python setup_sns.py --create-topic --email ops@example.com
-    python setup_sns.py --list-subscriptions
-    python setup_sns.py --test-alert
-"""
+# setup_sns.py - AWS SNS Configuration Helper for Electricity Grid Alerts
 
 import argparse
 import json
@@ -145,16 +129,16 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Create topic and subscribe email
+  # Create a new SNS topic and subscribe an email address
   python setup_sns.py --create-topic --email ops@example.com
   
-  # List existing topics
+  # Display all existing SNS topics in the AWS region
   python setup_sns.py --list-topics
   
-  # List subscriptions to a topic
+  # View all subscriptions for a specific SNS topic
   python setup_sns.py --list-subscriptions --topic-arn arn:aws:sns:us-east-1:123456789:electricity-grid-alerts
   
-  # Send test alert
+  # Send a test alert notification to verify SNS connectivity
   python setup_sns.py --test-alert --topic-arn arn:aws:sns:us-east-1:123456789:electricity-grid-alerts
         """
     )
@@ -205,10 +189,10 @@ Examples:
     
     args = parser.parse_args()
     
-    # Initialize helper
+    # Create the SNS helper instance
     helper = SNSConfigHelper(region=args.region)
     
-    # Handle commands
+    # Execute the requested command
     if args.create_topic:
         topic_arn = helper.create_topic(args.topic_name)
         if topic_arn and args.email:

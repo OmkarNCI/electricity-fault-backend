@@ -133,7 +133,7 @@ Timestamp (UTC): {timestamp_str}
             subject = self._format_alert_subject(alert)
             message_text = self._format_alert_body_text(alert)
 
-            # Create SNS message structure - needs to be JSON string when MessageStructure="json"
+            # Build the SNS message structure with both default and email formats
             message_structure = {
                 "default": message_text,
                 "email": message_text,
@@ -151,7 +151,7 @@ Timestamp (UTC): {timestamp_str}
             response = self.sns_client.publish(
                 TopicArn=self.sns_topic_arn,
                 Subject=subject,
-                Message=json.dumps(message_structure),  # Must be JSON string when MessageStructure="json"
+                Message=json.dumps(message_structure),  # SNS requires JSON format for multi-format messages
                 MessageStructure="json",
                 MessageAttributes={
                     "area_id": {"DataType": "String", "StringValue": alert.area_id},
@@ -184,9 +184,10 @@ Timestamp (UTC): {timestamp_str}
 _notifier_instance: SNSNotifier | None = None
 
 
+# Create and return the global SNS notifier singleton instance
 def get_sns_notifier() -> SNSNotifier:
     """
-    Get or create the SNS notifier singleton instance.
+    Retrieve the SNS notifier singleton instance, creating it if needed.
     """
     global _notifier_instance
     if _notifier_instance is None:

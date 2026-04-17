@@ -22,9 +22,7 @@ logger = logging.getLogger(__name__)
 
 class MQTTSubscriber:
     def __init__(self):
-        # -------------------------
-        # LOCAL MQTT (NO CHANGE)
-        # -------------------------
+        # Set up local MQTT broker connection
         self.broker_host = CONFIG.mqtt.get("broker_host", "localhost")
         self.broker_port = int(CONFIG.mqtt.get("broker_port", 1883))
         self.base_topic = CONFIG.mqtt.get("base_topic", "area")
@@ -33,9 +31,7 @@ class MQTTSubscriber:
         self.local_client.on_connect = self.on_local_connect
         self.local_client.on_message = self.on_local_message
 
-        # -------------------------
-        # AWS IoT CORE (UNCHANGED)
-        # -------------------------
+        # Configure AWS IoT Core endpoint and certificates for cloud connectivity
         self.aws_endpoint = "a3rif3julyho61-ats.iot.us-east-1.amazonaws.com"
         self.aws_client_id = "fog-processor-1"
         self.cert_path = "./certs/certificate.pem.crt"
@@ -43,17 +39,13 @@ class MQTTSubscriber:
         self.ca_path = "./certs/AmazonRootCA1.pem"
         self.aws_conn = None
 
-        # -------------------------
-        # STATE / LOGIC
-        # -------------------------
+        # Initialize core fog processing components for detection and aggregation
         self.aggregator = AreaAggregator()
         self.dispatcher = AWSDispatcher()
         self.summary_interval = CONFIG.fog.get("summary_interval_seconds", 60)
         self.last_summary_time = time.time()
 
-    # -------------------------
-    # CONNECT
-    # -------------------------
+    # Establish connections to both local MQTT broker and AWS IoT Core
     def connect(self):
         try:
             print(f"Connecting to AWS IoT Core at {self.aws_endpoint}...")
@@ -79,9 +71,7 @@ class MQTTSubscriber:
         self.local_client.connect(self.broker_host, self.broker_port, 60)
         self.local_client.loop_forever()
 
-    # -------------------------
-    # MQTT CONNECT
-    # -------------------------
+    # Handle successful connection to local MQTT broker
     def on_local_connect(self, client, userdata, flags, rc):
         if rc == 0:
             topic = f"{self.base_topic}/+/+/readings"
@@ -90,9 +80,7 @@ class MQTTSubscriber:
         else:
             logger.error(f"MQTT connect failed rc={rc}")
 
-    # -------------------------
-    # MAIN PIPELINE
-    # -------------------------
+    # Core message processing pipeline: parse sensor data, detect faults, publish alerts
     def on_local_message(self, client, userdata, msg):
         try:
             payload = json.loads(msg.payload.decode())
@@ -100,7 +88,7 @@ class MQTTSubscriber:
 
             alerts = detect_event(event)
 
-            # UI live update
+            # Update live state for dashboard visualization
             live_fog_state.update_event(event)
 
             self.broadcast({
@@ -108,7 +96,7 @@ class MQTTSubscriber:
                 "data": live_fog_state._event_to_dict(event)
             })
 
-            # ALERTS
+            # Process and publish any detected alerts to AWS IoT
             for alert in alerts:
 
                 self._publish_to_aws(
@@ -116,13 +104,13 @@ class MQTTSubscriber:
                     payload=alert.to_payload()
                 )
 
-            # TELEMETRY
+            # Send raw telemetry data to AWS IoT for logging and analytics
             self._publish_to_aws(
                 topic=f"area/{event.area_id}/telemetry/{event.pole_id}",
                 payload=payload
             )
 
-            # SUMMARY
+            # Periodically generate and send area summaries for broader grid health assessment
             now = time.time()
             if now - self.last_summary_time >= self.summary_interval:
 
@@ -138,9 +126,7 @@ class MQTTSubscriber:
         except Exception as e:
             logger.exception(e)
 
-    # -------------------------
-    # AWS PUBLISH
-    # -------------------------
+    # Publish messages to AWS IoT Core with proper serialization
     def _publish_to_aws(self, topic: str, payload: dict):
         if not self.aws_conn:
             return
@@ -158,9 +144,7 @@ class MQTTSubscriber:
         except Exception as e:
             logger.warning(f"AWS publish failed: {e}")
 
-    # -------------------------
-    # WEBSOCKET
-    # -------------------------
+    # Broadcast real-time updates to all connected dashboard clients via WebSocket
     def broadcast(self, data: dict):
         try:
             loop = asyncio.get_event_loop()
@@ -173,9 +157,7 @@ class MQTTSubscriber:
         except RuntimeError:
             asyncio.run(manager.broadcast(data))
 
-    # -------------------------
-    # PARSER
-    # -------------------------
+    # Convert MQTT payload JSON into structured SensorEvent object
     @staticmethod
     def payload_to_sensor_event(payload: dict[str, Any]) -> SensorEvent:
         return SensorEvent(

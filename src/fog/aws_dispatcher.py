@@ -71,7 +71,7 @@ class AWSDispatcher:
         """
         logger.info("Sending ALERT | area=%s pole=%s alert_type=%s", alert.area_id, alert.pole_id, alert.alert_type)
         
-        # Send to SQS for storage
+        # First, store the alert in SQS for persistence and downstream processing
         payload = {
             "type": "ALERT",
             "data": self._serialize_dataclass(alert),
@@ -79,7 +79,7 @@ class AWSDispatcher:
         response = self._send_message(payload)
         logger.info("ALERT sent to SQS successfully | message_id=%s", response.get("MessageId"))
         
-        # Send email notification via SNS
+        # Also send email notification to operators via SNS
         notifier = get_sns_notifier()
         sns_response = notifier.send_alert_notification(alert)
         if sns_response:

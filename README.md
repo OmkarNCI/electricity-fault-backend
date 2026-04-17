@@ -1,54 +1,97 @@
-Fog & Edge-Based Electricity Fault Detection System
+# Fog & Edge-Based Electricity Fault Detection System
 
-Project Overview
+## What is this?
 
-This project is a simulation of an electricity monitoring system built using Edge, Fog, and Cloud computing concepts.
+This is a practical demonstration of how edge and fog computing can work together to monitor power grids efficiently. Instead of sending every sensor reading to the cloud (which would be wasteful), the system processes data locally first, detects problems right away, and only sends the important stuff to AWS.
 
-The system generates simulated electricity sensor data and processes it in different stages. The fog layer detects abnormal conditions such as overload, voltage drop, or pole tilt. Important alerts and area-level summaries are then sent to AWS services for storage and further processing.
+The whole thing is simulated with Python, so you can run it without any actual hardware. The idea is to show how smart data filtering at the edge/fog layer can drastically reduce cloud costs and latency.
 
-The main goal of this project is to demonstrate how fog computing can process data locally and reduce unnecessary cloud traffic, while still sending critical information to the cloud.
+## How it works
 
-This project is written completely in Python and uses simulated sensors instead of physical devices.
+- **Edge layer**: Simulated sensors on poles generate voltage, current, temperature, and tilt readings every second
+- **Fog layer**: Processes these readings in real-time, detects faults (undervoltage, overload, overheating, etc.), and only sends alerts and summaries to the cloud
+- **Cloud layer**: AWS SQS, Lambda, and DynamoDB handle storage and final processing
 
-Technologies Used
-Python — Main programming language
-MQTT (Mosquitto) — Used for communication between edge and fog layers
-AWS SQS — Used to queue messages from fog to cloud
-AWS Lambda — Processes incoming SQS messages
-AWS DynamoDB — Stores alerts and area summaries
-YAML Configuration — Used for system settings
-Python Dataclasses — Used to structure sensor data
+## Tech Stack
 
-How to Run This Project:
+- **Python** - Everything is written in Python for simplicity and readability
+- **MQTT (Mosquitto)** - Lightweight pub/sub messaging between edge and fog
+- **AWS SQS** - Message queue for reliably sending alerts to the cloud
+- **AWS Lambda** - Serverless processing of messages from SQS
+- **AWS DynamoDB** - NoSQL database for storing alerts and area summaries
+- **YAML** - Configuration files for thresholds and AWS settings
+- **FastAPI** - REST API and WebSocket server for the dashboard
 
-Step 1 — Start MQTT Broker:
-Run Mosquitto broker:
+## Getting Started
+
+### Prerequisites
+- Python 3.10+
+- Mosquitto MQTT broker installed locally
+- AWS credentials configured (for SQS and DynamoDB access)
+- A WebSocket-capable terminal (for real-time updates)
+
+### Setup
+
+Make sure you're in the `Backend/` directory for all commands.
+
+**Step 1: Start the MQTT Broker**
+
+Open a terminal and run:
+```bash
 mosquitto
+```
+This starts the message broker that edge and fog layers communicate through.
 
-Step 2 — Start Fog Subscriber   -> This will start listening for incoming sensor data.
-Open terminal from project root:
+**Step 2: Start the Fog Processor**
+
+Open a new terminal from the project root:
+```bash
 python -m src.fog.mqtt_subscriber
+```
+This listens for sensor data from the edge layer and runs the fault detection logic. You should see connection confirmations and incoming sensor readings.
 
-Step 3 — Run Sensor Simulator -> This will start generating simulated sensor data.
-Open another terminal from project root:
+**Step 3: Start the Sensor Simulator**
+
+Open another terminal:
+```bash
 python -m src.edge.simulator
+```
+This generates simulated sensor data and publishes it to MQTT. You'll see logs of voltage, current, temperature, and tilt readings.
 
-Step 4 - Run the fastapi backend app to run the dashboard
-Open another terminal from project root:
+**Step 4: Start the Backend API**
+
+Open yet another terminal:
+```bash
 uvicorn src.dashboard.api:app --reload
+```
+This runs the FastAPI backend server. The API is now available at `http://localhost:8000` and will serve the dashboard frontend.
 
-Step 5 — Verify AWS Processing
-After running the system:
-Messages should appear in AWS SQS
-Lambda should process the messages
-Data should be stored in DynamoDB
+**Step 5: Verify Cloud Integration**
 
-Purpose of This Project:
-This project demonstrates how:
+After everything is running for a minute or two:
+- Check AWS SQS console - you should see messages appearing in the queue
+- AWS Lambda functions should be processing those messages
+- DynamoDB tables (`Alerts` and `AreaSummaries`) should have records
 
-1. Edge devices generate data
-2. Fog layer processes data locally
-3. Only important data is sent to the cloud
-4. Cloud services store and manage the results
+If you see messages flowing through the entire pipeline, you're good to go!
 
-It helps show the practical working of Fog and Edge Computing systems in a real-world style electricity monitoring scenario.
+### Tips
+- Keep all terminals visible side-by-side so you can watch everything happening in real-time
+- If MQTT connection fails, make sure Mosquitto is actually running
+- AWS credentials need to be set up before running. Use `aws configure` if you haven't already
+- The simulator runs for 5 minutes by default. Edit `config/settings.yaml` to change this
+
+## Architecture Overview
+
+The system works in layers:
+
+1. **Edge Layer** - Poles with sensors push readings via MQTT every second
+2. **Fog Layer** - Local processing detects anomalies and filters data before cloud transmission. Reduces bandwidth by ~80%
+3. **Cloud Layer** - SQS queues, Lambda processes, and DynamoDB persists the important alerts and summaries
+4. **Dashboard** - WebSocket live updates + REST API for historical data
+
+This approach means:
+- No wasted bandwidth sending every sensor reading to the cloud
+- Fault detection happens instantly at the fog layer (sub-second latency)
+- The cloud only handles the alerts and summaries that matter
+- Much cheaper than traditional centralized monitoring
