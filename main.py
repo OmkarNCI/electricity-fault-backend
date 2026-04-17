@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import threading
 import logging
 import time
@@ -13,11 +14,12 @@ from src.dashboard.api import router as dashboard_router
 from src.edge.simulator import run_simulator
 from src.fog.mqtt_subscriber import MQTTSubscriber
 from src.fog.websocket import websocket_endpoint
-
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent / ".env")
 setup_logging()
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Unified Backend")
+app = FastAPI(title="Unified Backend")  
 
 app.add_middleware(
     CORSMiddleware,
@@ -82,12 +84,19 @@ app.websocket("/ws")(websocket_endpoint)
 
 def start_mqtt():
     logger.info("Starting MQTT subscriber in background thread")
-    subscriber = MQTTSubscriber()
-    thread = threading.Thread(
-        target=subscriber.connect,
-        daemon=True
-    )
-    thread.start()
+    
+    try:
+        subscriber = MQTTSubscriber()
+        
+        thread = threading.Thread(
+            target=subscriber.connect,
+            daemon=True
+        )
+        thread.start()
+        
+    except Exception as e:
+        logger.error("Failed to start MQTT subscriber: %s", str(e))
+        raise
 
 
 def start_simulator():

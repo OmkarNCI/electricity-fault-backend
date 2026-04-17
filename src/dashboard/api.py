@@ -4,12 +4,13 @@ import sys
 import logging
 from decimal import Decimal
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 from uuid import uuid4
+import uuid
 
 import boto3
 from botocore.exceptions import BotoCoreError, ClientError
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, File, Header, HTTPException, UploadFile
 
 from src.fog.live_state import live_fog_state
 from src.common.config import CONFIG
